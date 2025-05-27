@@ -1,10 +1,5 @@
 # security-groups.tf
 
-# 1️⃣ Look up the default VPC
-data "aws_vpc" "default" {
-  default = true
-}
-
 # 2️⃣ API Security Group
 resource "aws_security_group" "api" {
   name        = "api-sg"
@@ -23,11 +18,11 @@ resource "aws_security_group" "api" {
 
   # Outbound: allow all
   egress {
-    description = "Allow all outbound"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    description      = "Allow all outbound"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
 
@@ -44,20 +39,20 @@ resource "aws_security_group" "redis" {
 
   # Inbound: only allow the API SG on port 6379
   ingress {
-    description      = "Allow Redis from API SG"
-    from_port        = 6379
-    to_port          = 6379
-    protocol         = "tcp"
-    security_groups  = [aws_security_group.api.id]
+    description     = "Allow Redis from API SG"
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [aws_security_group.api.id]
   }
 
   # Outbound: allow all (for snapshot or AWS calls)
   egress {
-    description = "Allow all outbound"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    description      = "Allow all outbound"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
 
