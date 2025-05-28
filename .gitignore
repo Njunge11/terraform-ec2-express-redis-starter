@@ -37,4 +37,4 @@ override.tf.json
 terraform.rc
 
 #this should not even here but hey
-express-app.pem
+express-key.pem
