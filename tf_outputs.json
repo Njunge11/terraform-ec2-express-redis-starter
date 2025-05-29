@@ -1,0 +1,17 @@
+{
+  "app_instance_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "i-0d8a34d4898b38412"
+  },
+  "app_public_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "13.246.124.192"
+  },
+  "ecr_repository_url": {
+    "sensitive": false,
+    "type": "string",
+    "value": "959448158619.dkr.ecr.af-south-1.amazonaws.com/express-api"
+  }
+}

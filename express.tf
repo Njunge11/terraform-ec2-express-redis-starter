@@ -55,13 +55,7 @@ resource "aws_instance" "app" {
       | docker login --username AWS --password-stdin ${local.registry_uri}
 
     # Run your Express API on port 3000
-    docker run -d --name express -p 3000:3000 ${var.express_image}
-
-    # Start Watchtower to auto-update the container whenever you push a new image
-    docker run -d --name watchtower \
-      -e WATCHTOWER_POLL_INTERVAL=30 \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      containrrr/watchtower express --cleanup
+    docker run -d --name express -p 3000:3000 -e REDIS_HOST=${aws_instance.redis.private_ip} ${var.express_image}
   EOF
 
   tags = {
